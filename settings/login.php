@@ -19,10 +19,15 @@
         $_SESSION["nome"] = $dados["Nome"];
         $_SESSION["tipo"] = $dados["Tipo_usuario"];
         $_SESSION["id"] = $dados["ID_usuario"];
+        $_SESSION["logado"] = $dados["logado"];
 
         mysqli_close($bd);
 
-        header("location: ../visualization/home.php");
+        if($_SESSION["logado"] == "N"){
+            header("location: ../visualization/Troca_senha.php");
+        }else{
+            header("location: ../visualization/home.php");
+        }
     }else{
         mysqli_close($bd);
         header("location: ../index.php?error=1");

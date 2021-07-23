@@ -2,7 +2,11 @@
     session_start();
     
     if(isset($_SESSION["login"]) != false){
-         header("location: visualization/home.php");
+        if($_SESSION["logado"] == "N"){
+            header("location: visualization/Troca_senha.php");
+        }else{
+            header("location: visualization/home.php");
+        }
     }
 
 ?>
