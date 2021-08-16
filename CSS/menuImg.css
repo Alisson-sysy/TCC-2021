@@ -1,0 +1,38 @@
+*{
+    padding: 0px;
+    border: 0px;
+    margin: 0px;
+}
+
+.containerMenu{
+    display: flex;
+    justify-content: space-between;
+}
+
+.menu{
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 2;
+    height: 50px;
+    background-color: blue;
+} 
+
+.menu>a{
+    margin: 1vw;
+}
+
+.tresxquatro{
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    position: relative;
+    align-self: center;
+    border: 3px blue solid;
+    /* margin-bottom: 12vh;*/
+}
+
+.imgCab{
+   position: relative;
+   width: 100%;
+   height: 20vh;
+}
