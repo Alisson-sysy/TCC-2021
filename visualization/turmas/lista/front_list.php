@@ -1,5 +1,6 @@
 <?php
     include_once("../../../settings/turma/lista/back_listTurma.php");
+    include_once("../../../settings/connections/check_session.php");
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +23,8 @@
             ?>
         </fieldset>
 
-        <?php 
+        <?php
+
             $mensagem = "";
 
             if(isset($_GET["confi"]) && $_GET["confi"] === "1"){

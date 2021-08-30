@@ -1,5 +1,5 @@
 <?php
-    include_once("../../../settings/connect.php");
+    include_once("../../../settings/connections/connect.php");
     // include_once("../../../
 
     if(isset($_POST["acao"])){

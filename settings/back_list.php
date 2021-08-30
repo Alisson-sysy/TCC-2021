@@ -1,17 +1,20 @@
 <?php 
-    include_once('connect.php');
+    include_once('connections/connect.php');
     include_once('functions.php');
 
-    if(isset($_POST["acao"]) && $_POST["acao"] === "excluir"){
-         $ID_usuario = $_POST["valor"];
-        for($x=0;$x<2;$x++){
-            $sql = "DELETE FROM usuario_turma WHERE ID_usuario = $ID_usuario";
-            $sqli = "DELETE FROM usuario WHERE ID_usuario = $ID_usuario";
-    
-            mysqli_query($bd, $sqli);
-            mysqli_query($bd, $sql);
-        }
-
+    if(isset($_GET["id"])){
+         $ID_usuario = $_GET["id"];
+            for($x=0;$x<3;$x++){
+                $sql0 = "DELETE FROM observacoes WHERE id_usuario = $ID_usuario";
+                $sql1 = "DELETE FROM contato_professor WHERE ID_usuario = $ID_usuario";
+                $sql = "DELETE FROM usuario_turma WHERE ID_usuario = $ID_usuario";
+                $sqli = "DELETE FROM usuario WHERE ID_usuario = $ID_usuario";
+                
+                mysqli_query($bd, $sql0) or die(mysqli_error($bd));
+                mysqli_query($bd, $sql1) or die(mysqli_error($bd));
+                mysqli_query($bd, $sql) or die(mysqli_error($bd));
+                mysqli_query($bd, $sqli) or die(mysqli_error($bd));
+            }
          header("location: /TCC/visualization/front_list.php");
     }
 
@@ -33,7 +36,6 @@
     $result = mysqli_query($bd, $sql);
 
     if(mysqli_num_rows($result) > 0){
-
         $table = "<table class='tabela-list' id='tabela-list' border=1>";
         $table = $table."<tr><th>Nome</th><th>Sobrenome</th><th>Tipo de usuário</th><th>Turma</th><th>Excluir</th><th>Editar</th></tr>";
 
@@ -57,10 +59,7 @@
                 $turma = "Sem turma";
             }
 
-            $excluir = "<form action='/TCC/settings/back_list.php' method='POST'>
-                            <input type='hidden' name='valor' value='$id'>
-                            <input type='submit' name='acao' value='excluir'>
-                        </form>";
+            $excluir = "<input type='button' name='acao' value='excluir' onclick='confirma($id)'>";
             
             $editar = "<form action='../visualization/teacherRegister.php' method='POST'>
                             <input type='hidden' name='valor' value='$id'>
@@ -75,3 +74,15 @@
         $table = "Não há registros";
     }
 ?>
+
+<script>
+    function confirma(caminho){  
+        alert("Apagar um professor? Tem certeza sobre isso?");
+        confirm = confirm('Se você apagar esse professor(a), todas as obervações, turmas entre outras informações lincadas a ele(a), serão apagados também');
+        if(confirm){
+            window.location.href = "/TCC/settings/back_list.php?id="+caminho;
+        }else{
+            window.location.href = "/TCC/visualization/front_list.php";
+        }   
+    }
+</script>

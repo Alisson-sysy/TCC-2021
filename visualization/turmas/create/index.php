@@ -1,6 +1,6 @@
-<?php include_once("../../../settings/check_session.php");?>
+<?php include_once("../../../settings/connections/check_session.php");?>
 <?php include_once("../../../settings/functions.php")?>
-<?php include_once("../../../settings/connect.php")?>
+<?php include_once("../../../settings/connections/connect.php")?>
 
 <!DOCTYPE html>
     <head>

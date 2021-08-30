@@ -1,7 +1,6 @@
-<?php include_once("../settings/check_session.php");?>
+<?php include_once("../settings/connections/check_session.php");?>
 <?php include_once("../settings/functions.php")?>
-<?php include_once("../settings/connect.php")?>
-<?php //include_once("../settings/push/pushDatas.php")?>
+<?php include_once("../settings/connections/connect.php")?>
 
 <!DOCTYPE html>
 
@@ -54,6 +53,10 @@
 
                 $sqlP = "SELECT * FROM turma ORDER BY nome_turma";
                 $select_valueP = montaSelectBD($bd, $sqlP, false, $nome_turma);
+
+                $value = array('Email', 'Telefone', 'Instagram', 'Facebook', "Telefone Fixo");
+                $description = array('Email', 'Telefone', 'Instagram', 'Facebook', 'Telefone Fixo');
+                $select_valueC = makeSelect($value, $description, false, "");
             ?>
             <?php include_once("menu.php")?>
             <h3>Dados do professor</h3>
@@ -85,6 +88,18 @@
                     <select name="turma" id="turma" required>
                         <?php echo $select_valueP?>
                     </select>
+                </div>
+
+                <h3>Contatos</h3>
+                <div class="tipoContato">
+                    <label for="tipoContato">Tipo de contato</label>
+                    <select name="tipoContato" id="tipo" required <?php echo $tu?>>
+                        <?php echo $select_valueC?>
+                    </select>
+                </div>
+                <div class="Vcontato">
+                    <label for="Vcontato">Contato</label>
+                    <input type="text" name="Vcontato" required>
                 </div>
                 <?php
                     if($nome_turma == "Sem turma"){

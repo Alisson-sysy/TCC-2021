@@ -1,6 +1,6 @@
 <?php 
 
-    include_once("connect.php");
+    include_once("./connect.php");
     $login = mysqli_real_escape_string($bd, $_POST["login"]);
     $password = mysqli_real_escape_string($bd, $_POST["password"]);
 
@@ -8,7 +8,7 @@
             login = '$login' and
             password = '$password'";
 
-    $resultado = mysqli_query($bd, $sql_cod);
+    $resultado = mysqli_query($bd, $sql_cod) or die(mysqli_error($bd));
 
     if(mysqli_num_rows($resultado) == 1){
         session_start();
@@ -24,13 +24,13 @@
         mysqli_close($bd);
 
         if($_SESSION["logado"] == "N"){
-            header("location: ../visualization/Troca_senha.php");
+            header("location: ../../visualization/Troca_senha.php");
         }else{
-            header("location: ../visualization/home.php");
+            header("location: ../../visualization/home.php");
         }
     }else{
         mysqli_close($bd);
-        header("location: ../index.php?error=1");
+        header("location: ../../index.php?error=1");
     }
 
 ?>

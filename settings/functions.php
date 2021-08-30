@@ -41,7 +41,7 @@
   
 
     // function delete($table, $where){
-    //     include_once('connect.php');
+    //     include_once('connections/connect.php');
     //     $sql = "DELETE FROM $table WHERE ID_usuario = $where";
 
     //     mysqli_query($bd, $sql);

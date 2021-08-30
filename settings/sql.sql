@@ -112,3 +112,10 @@ UPDATE turma SET
 SELECT usuario.nome, usuario.Sobrenome, usuario.Tipo_usuario, turma.nome_turma FROM turma, usuario, usuario_turma 
 WHERE usuario_turma.Id_turma = turma.id_turma && usuario_turma.ID_usuario = 50;
 
+update aluno SET aluno.data_nascimento = "2019-03-14" where aluno.id_aluno = "8";
+
+select turma.nome_turma from turma, aluno where aluno.id_turma = turma.id_turma && aluno.id_turma = 18;
+
+SELECT nome_turma from turma where id_turma = 18;
+
+SELECT turma.nome_turma from turma, aluno where aluno.id_turma = turma.id_turma && aluno.id_turma = 20;

@@ -1,12 +1,12 @@
 <?php     
-    include_once('../settings/connect.php');
+    include_once('../settings/connections/connect.php');
     include_once('../settings/functions.php');
-    include_once('../settings/check_session.php');
+    include_once('../settings/connections/check_session.php');
 ?>
 
 
  <!-- Formulário -->
- <li><a href="../settings/exit.php">Sair</a></li>
+ <li><a href="../settings/connections/exit.php">Sair</a></li>
  <form action="../settings/push/pushDatas.php" method="POST">
 
 <div class="Novo_login">

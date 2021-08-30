@@ -1,7 +1,7 @@
 <?php
     $path = dirname(__FILE__) . '/../functions.php';
-    $path2 = dirname(__FILE__) . '/../check_session.php';
-    $path3 = dirname(__FILE__) . '/../connect.php';
+    $path2 = dirname(__FILE__) . '/../connections/check_session.php';
+    $path3 = dirname(__FILE__) . '/../connections/connect.php';
 
     include($path);
     include($path2); 
@@ -23,6 +23,8 @@
         $tipo = $_POST["tipo"] != ""? mysqli_real_escape_string($bd, $_POST["tipo"]): header("location: /TCC/visualization/teacherRegister.php?error=1");
         $sobrenome = $_POST["sobrenome"] != ""? mysqli_real_escape_string($bd, $_POST["sobrenome"]): header("location: /TCC/visualization/teacherRegister.php?error=1");
         $turma = $_POST["turma"] != ""? mysqli_real_escape_string($bd, $_POST["turma"]): header("location: /TCC/visualization/teacherRegister.php?error=1");
+        $Tcontato = isset($_POST["tipoContato"])? mysqli_real_escape_string($bd, $_POST["tipoContato"]): header("location: /TCC/visualization/alunos/creatAlunos/createAlunos.php?error=1");
+        $Vcontato = isset($_POST["Vcontato"])? mysqli_real_escape_string($bd, $_POST["Vcontato"]): header("location: /TCC/visualization/alunos/creatAlunos/createAlunos.php?error=1");
             // Adicionar um novo professor
             $sql_code = "INSERT INTO usuario (Nome, Sobrenome, Data_nascimento, Tipo_usuario)
                          VALUES
@@ -60,6 +62,21 @@
                     }
                 }
 
+                $sql_code = "INSERT INTO contato_professor (ID_usuario, tipo_contato, contato)
+                        VALUES
+                ('$new_user', '$Tcontato', '$Vcontato')";
+
+                if(!mysqli_query($bd, $sql_code)){
+
+                    if ( mysqli_errno($bd) == 1062 ) {
+                        $mensagem = "<h3>Prezado usuário o valor escolhido '$' já está sendo utilizado. Escolha outro!</h3>";
+                    } else {
+                        $mensagem = "<h3>Ocorreu um erro ao inserir os dados: </h3> <h3>".mysqli_error($bd)."</h3> <h4>".mysqli_errno($bd)."</h4>";
+                    }
+                    echo $mensagem;
+                }
+
+
                 header("location: ../../visualization/teacherRegister.php?error=0");
                 // Construção de uma senha e de um login aleatório para o novo usuário
 
@@ -93,7 +110,7 @@
                         $mensagem = "<h3>Ocorreu um erro ao inserir os dados: </h3> <h3>".mysqli_error($bd)."</h3> <h4>".mysqli_errno($bd)."</h4>";
                     }
                 }else{
-                    header("location: /TCC/visualization/teacherRegister.php");
+                    header("location: /TCC/visualization/front_list.php");
                 }
             }
         
