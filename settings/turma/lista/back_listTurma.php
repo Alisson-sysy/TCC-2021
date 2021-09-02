@@ -64,7 +64,7 @@
     if(mysqli_num_rows($resultado) > 0){
 
         $table = "<table class='tabela-list' id='tabela-list' border=1>";
-        $table = $table."<tr><th>Turma</th><th>Periodo</th><th>aluno</th>$mod</tr>";
+        $table = $table."<tr><th>Turma</th><th>Periodo</th><th>aluno</th><th>Atividades</th>$mod</tr>";
 
         while($dados = mysqli_fetch_assoc($resultado)){
             $id = $dados["id_turma"];
@@ -82,12 +82,17 @@
                         <input type='hidden' name='valor' value='$id'>
                         <input type='submit' name='aluno' value='Alunos'>
                     </form>";
+            
+            $atividades = "<form action='/TCC/visualization/Atividades/listAtividade/frontList.php' method='POST'>
+                    <input type='hidden' name='idTurma' value='$id'>
+                    <input type='submit' value='Atividades'>
+                </form>";
 
                     
             if($tipo_usuario == "D"){
-                $table = $table."<tr><td>$nome_turma</td><td>$periodo_aula</td><td>$alunos</td><td>$excluir</td><td>$editar</td></tr>";
+                $table = $table."<tr><td>$nome_turma</td><td>$periodo_aula</td><td>$alunos</td><td>$atividades</td><td>$excluir</td><td>$editar</td></tr>";
             }else if($tipo_usuario == "P"){
-                $table = $table."<tr><td>$nome_turma</td><td>$periodo_aula</td><td>$alunos</td></tr>";
+                $table = $table."<tr><td>$nome_turma</td><td>$periodo_aula</td><td>$alunos</td><td>$atividades</td></tr>";
             }
 
         }

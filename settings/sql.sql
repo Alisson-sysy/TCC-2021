@@ -56,7 +56,7 @@ create table atividade(
 	id_atividade int auto_increment not null primary key,
     nome_atividade varchar(30) not null,
     dia_entrega date not null,
-    hora_entrega date not null,
+    hora_entrega time not null,
     id_turma  int not null,
     ID_usuario int not null,
     desc_atv varchar(40),
