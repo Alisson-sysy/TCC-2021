@@ -1,0 +1,93 @@
+textarea:focus, input:focus, select:focus {
+    border: 1px solid rgb(0,0,0,0);
+    outline: 0;
+}
+
+body{
+    height: 150vh;
+}
+
+.main{
+    display: flex;
+    justify-content: center;
+}
+
+#form{
+    background-color: white;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 90%;
+    position: absolute;
+    top: 10vh; 
+    padding: 10px;
+    box-shadow: 1px 4px 4px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.txtTitulo{
+    font-family: 'Archivo Narrow', sans-serif;
+    color: #32264D;
+}
+
+.info{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    width: 80%;
+}
+
+.info input{
+    width: 100%;   
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #FAFAFC;
+    border: none;
+    box-shadow: 4px 4px 4px 0px rgba(0,0,0,0.05);
+    font-family: 'Poppins', sans-serif;
+    color: black;
+    font-weight: bold;
+}
+
+.info select{
+    width: 100%;   
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #FAFAFC;
+    border: none;
+    box-shadow: 4px 4px 4px 0px rgba(0,0,0,0.05);
+    font-family: 'Poppins', sans-serif;
+    color: black;
+    font-weight: bold;
+}
+
+.info label{
+    font-family: 'Poppins', sans-serif;
+    color: #9C98A6;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+#submitButton{
+    padding: 10px;
+    width: 25%;
+    border: none;
+    margin-top: 20px;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    font-weight: bold;
+    background-color: #04D361;
+    border-radius: 7px;
+    font-size: 1rem;
+    transition: .6s;
+}
+
+#submitButton:hover{
+    background-color: #03b453;
+}
+
+@media (min-width: 800px){
+    #form{
+        width: 60%;
+    }
+}

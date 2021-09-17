@@ -6,11 +6,12 @@
     <head>
         <meta charset="utf-8"/>
         <title>Cadastro de Turmas</title>
+        <link rel="stylesheet" href="/TCC/CSS/cssForm/cssform.css">
     </head>
     <body>
         <?php
 
-            $nome = "";
+            $nome = " ";
             $periodo = "";
             $do = "Criar Turma";
             $id = '';
@@ -39,26 +40,24 @@
                 }
             }
         ?>
-        <?php include_once("../../menu.php")?>
-        <div>
-            <form action="/TCC/settings/turma/create/push_turmas.php" method="POST">
-                <div class="turmaNome">
-                    <div>
+        <?php include_once("../../menuForm.php")?>
+        <main class='main'>
+            <form action="/TCC/settings/turma/create/push_turmas.php" id='form' method="POST"> 
+                    <div class='info'>
                         <label>Nome da turma:</label>
                         <input type="text" name='turmaNome' value="<?php echo $nome?>" required>
                     </div>
-                    <div class="Periodo">
+                    <div class="Periodo info">
                         <label>Periodo</label>
                         <select name="periodo" id="Periodo" required>
                             <?php echo $select_value?>
                         </select>
                     </div>
-                </div>
                 <input type="hidden" value="<?php echo $id?>" name="id">
-                <input type="submit" value="<?php echo $do?>" name="acao">
+                <input type="submit" value="<?php echo $do?>" id='submitButton' name="acao">
                 <p><?php echo $mensagem?></p>
             </form>
-        </div>
+        </main>
     </body>
 
 <html>

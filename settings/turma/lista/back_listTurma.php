@@ -59,40 +59,46 @@
     }else{
         $sql = "SELECT turma.* from turma, usuario_turma, usuario where turma.id_turma = usuario_turma.id_turma && usuario.ID_usuario = usuario_turma.ID_usuario && usuario.ID_usuario = $id_usuario;";
     }
+
     $resultado = mysqli_query($bd, $sql);
 
     if(mysqli_num_rows($resultado) > 0){
 
-        $table = "<table class='tabela-list' id='tabela-list' border=1>";
-        $table = $table."<tr><th>Turma</th><th>Periodo</th><th>aluno</th><th>Atividades</th>$mod</tr>";
+        $table = "";
 
         while($dados = mysqli_fetch_assoc($resultado)){
             $id = $dados["id_turma"];
             $nome_turma = $dados["nome_turma"];
             $periodo_aula = $dados["periodo"];
 
-            $excluir = "<input type='button' name='acao' value='excluir' onclick='confirma($id)'>";
+            if($periodo_aula == 'T'){
+                $periodo_aula = 'Tarde';
+            }else{
+                $periodo_aula = 'Manhã';
+            }
+
+            $excluir = "<input type='button' name='acao' value='excluir' id='btn' onclick='confirma($id)'>";
             
             $editar = "<form action='/TCC/visualization/turmas/create/index.php' method='POST'>
                             <input type='hidden' name='valor' value='$id'>
-                            <input type='submit' name='acao' value='editar'>
+                            <input type='submit' name='acao' id='btn' value='editar'>
                         </form>";
 
             $alunos = "<form action='/TCC/settings/alunos/lista/back_list.php?id=$id' method='POST'>
                         <input type='hidden' name='valor' value='$id'>
-                        <input type='submit' name='aluno' value='Alunos'>
+                        <input type='submit' name='aluno' id='btn' value='Alunos'>
                     </form>";
             
             $atividades = "<form action='/TCC/visualization/Atividades/listAtividade/frontList.php' method='POST'>
                     <input type='hidden' name='idTurma' value='$id'>
-                    <input type='submit' value='Atividades'>
+                    <input type='submit' id='btn' value='Atividades'>
                 </form>";
 
                     
             if($tipo_usuario == "D"){
-                $table = $table."<tr><td>$nome_turma</td><td>$periodo_aula</td><td>$alunos</td><td>$atividades</td><td>$excluir</td><td>$editar</td></tr>";
+                $table = $table."<div id='classItem'><p class='PInfo'>$nome_turma</p><p class='PInfo'>$periodo_aula</p>$alunos $atividades $excluir $editar </div>";
             }else if($tipo_usuario == "P"){
-                $table = $table."<tr><td>$nome_turma</td><td>$periodo_aula</td><td>$alunos</td><td>$atividades</td></tr>";
+                $table = $table."<div id='classItem'><p class='PInfo'>$nome_turma</p><p class='PInfo'>$periodo_aula</p>$alunos $atividades $excluir $editar </div>";
             }
 
         }

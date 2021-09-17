@@ -19,7 +19,6 @@
     <body>
         <center>
          <!-- Formulário -->
-        <li><a href="../settings/connections/exit.php">Sair</a></li>
         <main class="mainCount">
             <div class="textLogo">
                 <p class="logoTittle">Profie</p>

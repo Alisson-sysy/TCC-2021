@@ -67,26 +67,36 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/TCC/CSS/maisInfo/maisInfo.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Londrina+Sketch&family=Poppins:wght@100&display=swap" rel="stylesheet">
         <title>Informações Aluno</title>
     </head>
     <body>
 
-        <?php include_once("../../menu.php")?>
-        
-        <h5 id="nome">Nome: <?php echo $nome. " " .$sobrenome?></h5>
-        <form action="/TCC/settings/alunos/createAlunos/pushAlunos.php" enctype="multipart/form-data" method="POST">
-            <label for="mudarFoto"><img type='image' src='<?php echo $foto?>' width='300px' height='200px'></label>
-            <input type="hidden" name="alterImg">
-            <input type="hidden" name="idturma" value="<?php echo $turma?>">
-            <input type="hidden" name="id_aluno" value="<?php echo $id_aluno?>">
-            <input type="file" name="foto" id="mudarFoto" onchange="form.submit()" hidden>
-        </form>
+        <?php include_once("../../men.php")?>
+
 
         <div class="infoAluno">
-            <h1>Informações do aluno</h1>
-            <h5>Data de Nascimento: <?php echo $data?></h5>
-            <h5>Contatos:</h5>
-            <p><?php ?></p>
+            <div id='firstInfo'>
+                <form action="/TCC/settings/alunos/createAlunos/pushAlunos.php" enctype="multipart/form-data" method="POST">
+                    <label for="mudarFoto"><div id='mask'><div class='texto'>Trocar imagem</div><img type='image' src='<?php echo $foto?>' width='300px' height='200px'></div></label>
+                    <input type="hidden" name="alterImg">
+                    <input type="hidden" name="idturma" value="<?php echo $turma?>">
+                    <input type="hidden" name="id_aluno" value="<?php echo $id_aluno?>">
+                    <input type="file" name="foto" id="mudarFoto" onchange="form.submit()" hidden>
+                </form>
+                <h5 id="nome"><?php  echo "<p class='textoFirstInfo'>". $nome.  " " .$sobrenome ."</p>"?></h5>
+            </div>
+            <h1 id='tituloInfoAluno'>Informações do aluno</h1>
+            <p>Data de Nascimento: <?php echo $data?></p>
+
+
+            <p>Turma: <?php echo $nomeTurma?></p>
+            <p>Professor: <?php echo $nomeProfessor ?></p>
+
+            <p>Contatos:</p>
             <?php 
             
                 $sql3 = "SELECT * FROM contato_aluno WHERE id_aluno = $id_aluno";
@@ -95,28 +105,41 @@
                     $Tcontato = $dados3["tipo_contato"];
                     $Vcontato = $dados3["contato"]; 
 
-                    $ex = "<form method='POST'>
-                        <input type='submit' name='excluir' value='✗'/>
-                    </form>";
+                    if(!isset($_SESSION)){
+                        session_start();
+                    }
 
-                    echo '<p>'.$Tcontato.": ". $Vcontato.$ex.'</p>';
+                    if($_SESSION["tipo"] == "D"){
+                        $ex = "<form method='POST'>
+                        <input type='submit' name='excluir' id='deleteContato' value='✗'/>
+                        </form>";
+
+                        $novoCtt = "<form action=' method='POST'>
+                            <input type='hidden' name='new' value='$criarContato'>
+                            <input type='hidden' name='returnId' value='$id_aluno'>
+                            <input type='submit' id='createContato' value='$criarContatoText'>
+                        </form>";
+                    }else{
+                        $ex = "";
+                        $novoCtt = "";
+                    }
+
+                    echo '<div id="contato">'.$Tcontato.": ". $Vcontato.$ex.'</div>';
                 }
+                echo $novoCtt;
             ?>
-            <form action="" method="POST">
-                <?php echo $newLembrete?>
-                <input type="hidden" name="new" value="<?php echo $criarContato?>">
-                <input type="hidden" name="returnId" value="<?php echo $id_aluno?>">
-                <input type="submit" value="<?php echo $criarContatoText?>">
-            </form>
 
-            <h5>Turma: <?php echo $nomeTurma?></h5>
-            <h5>Professor: <?php echo $nomeProfessor ?></h5>
+
+                <div class="obsAluno">
+                    <h1>Observações do aluno</h1>
+                    <p><?php echo $obs?></p>
+                </div>
+
+                <div class="obs">
+                    <h1>Atividade do aluno</h1>
+                    <p><?php echo $divAtv?></p>
+                </div>
         </div>
 
-        <div class="obsAluno">
-            <hr>
-            <h1>Observações do aluno</h1>
-            <h5><?php echo $obs?></h5>
-        </div>
     </body>
 </html>

@@ -20,6 +20,7 @@
         $_SESSION["tipo"] = $dados["Tipo_usuario"];
         $_SESSION["id"] = $dados["ID_usuario"];
         $_SESSION["logado"] = $dados["logado"];
+        
 
         mysqli_close($bd);
 

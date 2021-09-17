@@ -34,13 +34,12 @@
         }
 
 
-
         $sql4 = "SELECT turma.nome_turma, turma.id_turma FROM turma, aluno WHERE aluno.id_turma = turma.id_turma && aluno.id_aluno = $id_aluno";
         $resultado4 = mysqli_query($bd, $sql4);
         $dados4 = mysqli_fetch_assoc($resultado4);
 
         $nomeTurma = $dados4["nome_turma"];
-
+   
         $idTurmaAluno = $dados4["id_turma"];
 
         $sql5 = "SELECT usuario.nome FROM usuario, usuario_turma, turma WHERE usuario.ID_usuario = usuario_turma.id_usuario && turma.id_turma = usuario_turma.id_turma &&  turma.id_turma = $idTurmaAluno;";
@@ -51,6 +50,24 @@
         }else{
             $nomeProfessor = "A turma está sem professor";
         }
+
+        $sqlSelectTurma = "SELECT * from atividade where id_turma = $turma";
+        $resultado = mysqli_query($bd, $sqlSelectTurma) or die(mysqli_error($bd));
+        $row = mysqli_num_rows($resultado);
+
+        $divAtv = "<div class='listAtividades'>";
+        
+        if($row > 0){
+            while($dados = mysqli_fetch_assoc($resultado)){
+                $nomeAtivide = $dados['nome_atividade'];
+                
+                $divAtv = $divAtv."<p>$nomeAtivide</p>";
+            }
+        }else{
+            $divAtv = $divAtv."<p>O aluno(a) $nome não tem atividades</p>";
+        }
+
+        $divAtv = $divAtv. "</div>";
 
     }
 ?>

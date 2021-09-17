@@ -92,76 +92,78 @@
     <head>
         <meta charset="utf-8" />
         <title>Cadastro de aluno</title>
+        <link rel="stylesheet" href="/TCC/CSS/cssForm/cssForm.css">
     </head>
     <body>
 
         <article>
 
-            <?php include_once("../../menu.php")?>
+            <?php include_once("../../menuForm.php")?>
 
-            <h3>Informações do Aluno</h3>
-            <!-- Formulário -->
-            <form action="../../../settings/alunos/createAlunos/pushAlunos.php" enctype="multipart/form-data" method="POST">
+            <main class='main'>
+                <!-- Formulário -->
+                <form action="../../../settings/alunos/createAlunos/pushAlunos.php" enctype="multipart/form-data" id='form' method="POST">
+                    <h3 class='txtTitulo'>Informações do Aluno</h3>
 
-                <div class="primeiro_nome">
-                    <label>Primeiro Nome</label>
-                    <input type="text" name='nome' value="<?php echo $nome?>" required>
-                </div>
-                <div class='sobrenome'>
-                    <label>Segundo nome</label>
-                    <input type="text" name='sobrenome' value="<?php echo $sobrenome?>" required>
-                </div>
-                <?php echo $addImg?>
-                <div class="data_nascimento">  
-                    <label>Data de nascimento</label>
-                    <input type="date" name='data' value="<?php echo $data?>" required>
-                </div>
-                <div class="nomePai">
-                    <label>Nome do Pai</label>
-                    <input type="text" name='nomePai' value="<?php echo $pai?>" required>
-                </div>
-                <div class="nomeMae">
-                    <label>Nome da Mãe</label>
-                    <input type="text" name='nomeMae' value="<?php echo $mae?>" required>
-                </div>
-                <div class="obs">
-                    <label for="obs"><?php echo $obsText?></label>
-                    <input type="text" name='obs' <?php echo $obsView?>>
-                </div>
+                    <div class="primeiro_nome info">
+                        <label>Primeiro Nome</label>
+                        <input type="text" name='nome' value="<?php echo $nome?>" required>
+                    </div>
+                    <div class='sobrenome info'>
+                        <label>Segundo nome</label>
+                        <input type="text" name='sobrenome' value="<?php echo $sobrenome?>" required>
+                    </div>
+                    <?php echo $addImg?>
+                    <div class="data_nascimento info">  
+                        <label>Data de nascimento</label>
+                        <input type="date" name='data' value="<?php echo $data?>" required>
+                    </div>
+                    <div class="nomePai info">
+                        <label>Nome do Pai</label>
+                        <input type="text" name='nomePai' value="<?php echo $pai?>" required>
+                    </div>
+                    <div class="nomeMae info">
+                        <label>Nome da Mãe</label>
+                        <input type="text" name='nomeMae' value="<?php echo $mae?>" required>
+                    </div>
+                    <div class="obs info">
+                        <label for="obs"><?php echo $obsText?></label>
+                        <input type="text" name='obs' <?php echo $obsView?>>
+                    </div>
 
-                <?php 
-                    if($editar == "true"){
-                        echo "<h3>Contatos</h3>
-                        <div class='tipoContato'>
-                            <label for='tipoContato'>Tipo de contato</label>
-                            <select name='tipoContato' id='tipo' required>
-                                $select_value
-                            </select>
-                        </div>
-                        <div class='Vcontato'>
-                            <label for='Vcontato'>Contato</label>
-                            <input type='text' name='Vcontato' required>
-                        </div>";
-                    }
+                    <?php 
+                        if($editar == "true"){
+                            echo "<h3 class='txtTitulo'>Contatos</h3>
+                            <div class='tipoContato info'>
+                                <label for='tipoContato'>Tipo de contato</label>
+                                <select name='tipoContato' id='tipo' required>
+                                    $select_value
+                                </select>
+                            </div>
+                            <div class='Vcontato info'>
+                                <label for='Vcontato info'>Contato</label>
+                                <input type='text' name='Vcontato' required>
+                            </div>";
+                        }
 
-                ?>
+                    ?>
 
-                <?php echo $texto?>
-                <div class="nomeTurma">
-                    <label>Nome da turma</label>
-                    <select name="" id="" disabled required <?php echo $tuu?>>
-                        <?php echo $select_valueP?>
-                    </select>
-                    <select name="nomeTurma" id="tipo" required <?php echo $tu?>>
-                        <?php echo $select_valueP?>
-                    </select>
-                </div>
+                    <?php echo $texto?>
+                    <div class="nomeTurma info">
+                        <label>Nome da turma</label>
+                        <select name="" id="" disabled required <?php echo $tuu?>>
+                            <?php echo $select_valueP?>
+                        </select>
+                        <select name="nomeTurma " id="tipo" required <?php echo $tu?>>
+                            <?php echo $select_valueP?>
+                        </select>
+                    </div>
 
-                <input type="hidden" value="<?php echo $id?>" name="id">
-                <input type="submit" value="<?php echo $do?>" name="acao">
+                    <input type="hidden" value="<?php echo $id?>" name="id">
+                    <input type="submit" value="<?php echo $do?>" name="acao" id='submitButton'>
 
-            </form>
-
+                </form>
+            </main>
             <?php 
             //  Vai buscar qualquer tipo de informação que vem pela Url 
                 if(isset($_GET["error"]) && $_GET["error"] === "1"){

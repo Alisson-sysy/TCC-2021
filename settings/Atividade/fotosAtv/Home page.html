@@ -1,0 +1,73 @@
+
+<!-- saved from url=(0049)http://localhost/TCC/visualization/front_list.php -->
+<html lang="pt-br"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script>
+    function confirma(caminho){  
+        alert("Apagar um professor? Tem certeza sobre isso?");
+        confirm = confirm('Se você apagar esse professor(a), todas as obervações, turmas entre outras informações lincadas a ele(a), serão apagados também');
+        if(confirm){
+            window.location.href = "/TCC/settings/back_list.php?id="+caminho;
+        }else{
+            window.location.href = "/TCC/visualization/front_list.php";
+        }   
+    }
+</script>
+
+    
+        <title>Home page</title>
+        
+        <link rel="stylesheet" type="text/css" href="./Home page_files/front_list.php">
+        <link rel="stylesheet" href="./Home page_files/listaProfessores.css">
+    </head>
+    <body>
+        
+
+    
+        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com/">
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+        <link href="./Home page_files/css2" rel="stylesheet">
+        <link rel="stylesheet" href="./Home page_files/menu.css">
+    
+    
+        <header id="header">
+            <a href="http://localhost/TCC/visualization/home.php" id="logo">PROFIE</a>
+            <nav id="nav" class="active">
+                <input type="button" id="btn-mobile" value="╳" style="">
+                <ul id="menu"> 
+                    <li><a class="nav-link active" aria-current="page" href="http://localhost/TCC/visualization/home.php"><!--<img class='imgMenu' src='/TCC/CSS/imgCss/vector home.png'>-->Home</a></li>
+                    <li><a class="nav-link" href="http://localhost/TCC/visualization/front_list.php">Professores</a></li>
+                            <li><a class="nav-link" href="http://localhost/TCC/visualization/teacherRegister.php">Cadastro de professores</a></li>
+                            <li><a class="nav-link" href="http://localhost/TCC/visualization/turmas/create">Cadastro de Turmas</a></li>                    <li><a class="nav-link" href="http://localhost/TCC/visualization/planoMensal/list/planoLista.php">Plano mensal</a></li>
+                    <li><a class="nav-link" href="http://localhost/TCC/visualization/turmas/lista/front_list.php">Turmas</a></li>
+                    <li><a class="nav-link" href="http://localhost/TCC/settings/connections/exit.php">Sair</a>  </li>
+                </ul>
+            </nav>
+        </header>
+    
+    <script src="./Home page_files/menu.js.transferir"></script>
+        <a href="http://localhost/TCC/visualization/home.php">Voltar</a>
+        
+
+        <fieldset class="lista" id="lista">
+            <form method="POST">
+                    <label for="searching">Procurar</label>
+                    <input type="text" name="searching-input" id="searching" value=" ">
+                    <input type="submit" name="searching" value="Procurar">
+                </form><div id="classItem"><p>Alisson</p><p>garica</p><p>Diretor</p><p></p><input type="button" id="btn" name="acao" value="excluir" onclick="confirma(1)"> <form action="http://localhost/TCC/visualization/teacherRegister.php" method="POST">
+                            <input type="hidden" name="valor" value="1">
+                            <input type="submit" name="acao" id="btn" value="editar">
+                        </form></div><div id="classItem"><p>Alisson</p><p>garcia da rosa</p><p>Professor</p><p>Turma - 34</p><input type="button" id="btn" name="acao" value="excluir" onclick="confirma(4)"> <form action="http://localhost/TCC/visualization/teacherRegister.php" method="POST">
+                            <input type="hidden" name="valor" value="4">
+                            <input type="submit" name="acao" id="btn" value="editar">
+                        </form></div><div id="classItem"><p>Ellén</p><p>Borges</p><p>Professor</p><p>Turma - 34</p><input type="button" id="btn" name="acao" value="excluir" onclick="confirma(2)"> <form action="http://localhost/TCC/visualization/teacherRegister.php" method="POST">
+                            <input type="hidden" name="valor" value="2">
+                            <input type="submit" name="acao" id="btn" value="editar">
+                        </form></div><div id="classItem"><p>jaum</p><p>jaum</p><p>Professor</p><p>Turma - 34</p><input type="button" id="btn" name="acao" value="excluir" onclick="confirma(3)"> <form action="http://localhost/TCC/visualization/teacherRegister.php" method="POST">
+                            <input type="hidden" name="valor" value="3">
+                            <input type="submit" name="acao" id="btn" value="editar">
+                        </form></div>        </fieldset>
+
+        <p></p>    
+</body></html>

@@ -19,26 +19,41 @@
 
     if(mysqli_num_rows($resultado) > 0){
 
-        $table = "<table class='tabela-list' id='tabela-list' border=1>";
+        $table = "<div class='lembrete' id='tabela-list' border=1>";
 
 
         while($dados = mysqli_fetch_assoc($resultado)){
-            $texto = $dados["texto"];
+            $textoTitu = $dados["texto"];
             $id_lembrete = $dados["id_lembrete"];
+            $texto = $dados["textoTitu"];
 
+            $table = $table."<div class='ctt ctt-drop'>";
 
-            $excluir = "<center><form method='post'>
+            $excluir = "<form method='post'>
                         <input type='hidden' name='id' value='$id_lembrete'>
                         <input type='hidden' name='acao' value='EXCLUIR'>
-                        <input type='submit' value='✓'>
-                    </form></center>";
+                        <input type='submit' class='exc' value='✓'>
+                    </form>";
 
-            $table = $table."<tr><td>$excluir</td><td>$texto</td></tr>";
-
+            $table = $table."$excluir<p class='txtCtt'>$textoTitu <span>$texto<span></p>";
+            $table = $table."</div>";
         }
-        $table = $table."</table>";
+        $table = $table."
+            <form class='ctt ctt-button' method='POST' id='fomradd'>
+                <input type='hidden' name='new' value='Novo Lembrete'>
+                <input type='image' id='butAdd' class='addButton' src='/TCC/img/add-button.png' type='submit'>
+            </form>
+        </div>";
     }else{
-        $table = "Não há lembretes";
+        $table = "<p class='txtNtxt'>Não há lembretes
+        
+        <form class='ctt ctt-button ctt-buttonN' method='POST' id='fomradd'>
+            <input type='hidden' name='new' value='Novo Lembrete'>
+            <input type='image'  class='addButton' src='/TCC/img/add-button.png' id='butAdd' type='submit'>
+        </form>
+
+        </p>
+            ";
     }
 
 

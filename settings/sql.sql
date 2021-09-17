@@ -1,5 +1,4 @@
-drop database profie;
-create database profie;
+create database profieTCC;
 
 
 create table usuario(
@@ -56,7 +55,7 @@ create table atividade(
 	id_atividade int auto_increment not null primary key,
     nome_atividade varchar(30) not null,
     dia_entrega date not null,
-    hora_entrega time not null,
+    hora_entrega date not null,
     id_turma  int not null,
     ID_usuario int not null,
     desc_atv varchar(40),
@@ -65,7 +64,7 @@ create table atividade(
 );
 
 create table entrega(
-	id_entrega int auto_increment not null primary key,
+	id_entrega int auto_increment not null,
     id_atividade int,
     id_aluno int,
     foto blob,
@@ -73,8 +72,55 @@ create table entrega(
     dia_entrega date,
     hora_entrega date,
     foreign key(id_atividade) references atividade(id_atividade),
-    foreign key(id_aluno) references aluno(id_aluno)
+    foreign key(id_aluno) references aluno(id_aluno),
+    primary key (id_entrega, id_atividade, id_aluno)
 );
+
+
+create table observacoes(
+	id_observacoes int auto_increment not null primary key,
+    id_aluno int,
+    id_usuario int,
+	data_obs date,
+    hora_obs time,
+    observacao varchar(30),
+    foreign key(id_aluno) references aluno(id_aluno),
+    foreign key(id_usuario) references usuario(ID_usuario)
+);
+
+create table lembrete(
+	id_lembrete int auto_increment not null primary key,
+    id_usuario int not null,
+    texto varchar(50) not null,
+    textoTitu varchar(150) not null, 
+    foreign key(id_usuario) references usuario(ID_usuario)
+);
+
+create table plano_mensal(
+	id_plano int auto_increment not null primary key,
+    tt_plano varchar(50),
+    id_usuario int not null,
+    data date,
+    foreign key(id_usuario) references usuario(ID_usuario) on delete cascade
+);
+
+create table topico_plano(
+	id_plano int not null,
+    topico varchar(100) not null,
+    ctt_topico varchar(250) not null,
+    foreign key(id_plano) references plano_mensal(id_plano) on delete cascade
+);
+
+
+
+/*testes*/
+/*testes*/
+
+insert into entrega (id_atividade, id_aluno) values (4, 87);
+
+insert into observacoes(id_aluno, id_usuario, data_obs, hora_obs, observacao) 
+values
+(38, 43, 2019-03-03, "00:00", "O aluno és mui burito");
 
 insert into usuario (nome, Sobrenome, Tipo_usuario) values ("Alisson", "garica", "P");
 
@@ -119,3 +165,36 @@ select turma.nome_turma from turma, aluno where aluno.id_turma = turma.id_turma 
 SELECT nome_turma from turma where id_turma = 18;
 
 SELECT turma.nome_turma from turma, aluno where aluno.id_turma = turma.id_turma && aluno.id_turma = 20;
+
+iNSERT INTO contato_aluno(id_aluno, tipo_contato, contato)
+                         VALUES
+                         ('$last_user', '$Tcontato', '$Vcontato');
+                         
+
+UPDATE contato_aluno SET
+                        tipo_contato = 'Email',
+                        contato = 'aldainwdpaudpa@ADJNAPUHDA.COM'
+                            where
+                        id_aluno = 38;
+                        
+SELECT turma.nome_turma FROM turma, aluno WHERE aluno.id_turma = turma.id_turma && aluno.id_aluno = 38;
+
+SELECT usuario.nome FROM usuario, usuario_turma, turma WHERE usuario.ID_usuario = usuario_turma.id_usuario && turma.id_turma = usuario_turma.id_turma &&  turma.id_turma = 17;
+
+SELECT id_aluno from aluno where id_turma = 17;
+
+select turma.* from turma, usuario_turma, usuario where turma.id_turma = usuario_turma.id_turma && usuario.ID_usuario = usuario_turma.ID_usuario && usuario.ID_usuario = 66;
+
+insert into plano_mensal (id_usuario, data) values (68, "2020-05-05");
+delete from plano_mensal where id_usuario = "68";
+insert into topico_plano (id_plano, topico, ctt_topico) values (1, "Alimentos", "Comer todos os dias");
+
+                   
+SELECT MONTH(Data_nascimento) FROM usuario WHERE Data_nascimento = "2021-08-27";
+
+SELECT id_plano FROM plano_mensal where MONTH(data) = 1 && YEAR(data) = 2021;
+
+SELECT tt_plano from plano_mensal where id_plano = 1;
+
+
+

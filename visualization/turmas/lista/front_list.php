@@ -7,18 +7,24 @@
     <head>
         <title>Home page</title>
         <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="#">
+        <link rel="stylesheet" href="/TCC/CSS/lista/listaProfessores.css">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow&display=swap" rel="stylesheet">
     </head>
     <body>
-        <?php include_once("../../menu.php");?>
-        <a href="home.php">Voltar</a>
+        <?php include_once("../../men.php");?>
         
         <?php
             // echo $pesquisar;
         ?>
 
-        <fieldset class="lista" id="lista">
-            <?php   
+        <fieldset class="lista" id="lista" id='form'>
+            <?php  
+                echo "<div id='head'>";
+                    echo '<p id="listaText">Lista de turmas</p>';
+                echo "</div>"; 
                 echo $table;
             ?>
         </fieldset>

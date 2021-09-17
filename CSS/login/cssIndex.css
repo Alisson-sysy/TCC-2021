@@ -62,7 +62,8 @@ body{
     padding: 1vh;
     margin-bottom: 1vh;
     border-radius: 6px;
-    color: white;
+    font-weight: bold;
+    color: black;
     background: rgba(255,255,255, .42);
     font-family: 'Poppins', sans-serif;
     font-size: 1.8vw;
@@ -70,9 +71,10 @@ body{
 }
 
 .inputLogin::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: white;
+    color: black;
     font-family: 'Poppins', sans-serif;
     font-size: 1.8vw;
+    font-weight: bold;
 }
 
 .inputLogin:hover{

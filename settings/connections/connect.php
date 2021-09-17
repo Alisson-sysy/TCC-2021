@@ -1,6 +1,6 @@
 <?php 
                         //local, user, password, table
-    $bd = mysqli_connect("localhost", "root", "", "profie");
+    $bd = mysqli_connect("localhost", "root", "", "profietcc");
 
 
     if($bd){
@@ -11,4 +11,4 @@
         exit();
     }
 
-?>
+?> 

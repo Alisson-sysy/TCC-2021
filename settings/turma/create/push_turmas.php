@@ -1,17 +1,20 @@
 <?php
+    //include do BD
     include_once("../../../settings/connections/connect.php");
+    
     // include_once("../../../
 
     if(isset($_POST["acao"])){
-        $nomeTurma = isset($_POST["turmaNome"]) ? mysqli_real_escape_string($bd, $_POST["turmaNome"]): header("location: /TCC/visualization/turmas/create/index.php?error=1");
-        $periodo = isset($_POST["periodo"]) ? mysqli_real_escape_string($bd, $_POST["periodo"]) : header("location: /TCC/visualization/turmas/create/index.php?error=1");
-        $id = isset($_POST["id"])? mysqli_real_escape_string($bd, $_POST["id"]): header("/TCC/visualization/turmas/create/index.php?error=1");
+        $nomeTurma = $_POST["turmaNome"] != " " ? mysqli_real_escape_string($bd, $_POST["turmaNome"]): header("location: /TCC/visualization/turmas/create/index.php?error=1");
+        $periodo = $_POST["periodo"] != " "  ? mysqli_real_escape_string($bd, $_POST["periodo"]) : header("location: /TCC/visualization/turmas/create/index.php?error=1");
+        $id = $_POST["id"] != " " ? mysqli_real_escape_string($bd, $_POST["id"]): header("/TCC/visualization/turmas/create/index.php?error=1");
         if($_POST["acao"] == "Criar Turma"){
             header("location: /TCC/visualization/turmas/create/index.php?error=1");
 
             $sql_code = "INSERT INTO turma (nome_turma, periodo)
                          VALUES
                          ('$nomeTurma', '$periodo')";
+
                         
             if(!mysqli_query($bd, $sql_code)){
 
@@ -21,7 +24,7 @@
                     $mensagem = "<h3>Ocorreu um erro ao inserir os dados: </h3> <h3>".mysqli_error($bd)."</h3> <h4>".mysqli_errno($bd)."</h4>";
                 }
             }else{
-                header("location: /TCC/visualization/turmas/create/index.php?error=0");
+                header("location: /TCC/visualization/turmas/lista/front_list.php");
             }
         }else if($_POST["acao"] == "Salvar"){
             echo "$id";

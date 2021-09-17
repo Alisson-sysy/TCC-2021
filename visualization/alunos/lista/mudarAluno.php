@@ -55,7 +55,7 @@
 
         <article>
 
-            <?php include_once("../../menu.php")?>
+            <?php include_once("../../men.php")?>
             <h3>Mudar todos os alunos de turma</h3>
             <!-- Formulário -->
             <form action="/TCC/settings/alunos/createAlunos/pushAlunos.php" method="POST">

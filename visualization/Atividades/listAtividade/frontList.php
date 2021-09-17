@@ -15,7 +15,7 @@
     <body>
 
         <?php
-            $pathMenu = dirname(__FILE__) . "./../../menu.php";
+            $pathMenu = dirname(__FILE__) . "./../../men.php";
             include_once($pathMenu);
             
             if(count($atividades)>0){

@@ -6,10 +6,14 @@
     <head>
         <title>Alunos</title>
         <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="#">
+        <link rel="stylesheet" href="/TCC/CSS/lista/listaProfessores.css">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow&display=swap" rel="stylesheet">
     </head>
     <body>
-        <?php include_once("../../menu.php");?>
+        <?php include_once("../../men.php");?>
 
         <fieldset class="lista" id="lista">
             <?php   

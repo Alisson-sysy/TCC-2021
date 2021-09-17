@@ -30,8 +30,8 @@
 
     if(mysqli_num_rows($resultado) > 0){
 
-        $table = "<table class='tabela-list' id='tabela-list' border=1>";
-        $table = $table."<tr><th>Nome</th><th>Sobrenome</th><th>Data</th><th>Pai</th><th>Mae</th><th>Excluir</th><th>Editar</th></tr>";
+        $table = "";
+        
 
         while($dados = mysqli_fetch_assoc($resultado)){
             $id = $dados["id_aluno"];
@@ -42,20 +42,20 @@
             $pai = $dados["nome_pai"];
             $mae = $dados["nome_mãe"];
 
-            $excluir = "<input type='button' name='acao' value='excluir' onclick='confirma($id)'>";
+            $excluir = "<input type='button' name='acao' value='excluir' id='btn' onclick='confirma($id)'>";
             
             $editar = "<form action='/TCC/visualization/alunos/creatAlunos/createAlunos.php' method='POST'>
                             <input type='hidden' name='id_turma' value='$id_turma'>
                             <input type='hidden' name='valor' value='$id'>
-                            <input type='submit' name='acao' value='editar'>
+                            <input type='submit' name='acao' id='btn' value='editar'>
                         </form>";
             $more = "<form action='/TCC/visualization/alunos/maisInfo/maisInfo.php' method='POST'>
                         <input type='hidden' name='id_turma' value='$id_turma'>
                         <input type='hidden' name='valor' value='$id'>
-                        <input type='submit' name='acao' value='Ver mais'>
+                        <input type='submit' name='acao' id='btn' value='Ver mais'>
                     </form>";
 
-            $table = $table."<tr><td>$nome</td><td>$sobrenome</td><td>$data</td><td>$pai</td><td>$mae</td><td>$excluir</td><td>$editar</td><td>$more</td></tr>";
+            $table = $table."<div id='classItem'><p class='PInfo'>$nome</p><p class='PInfo'>$sobrenome</p>$excluir $editar $more </div>";
 
         }
         $table = $table."</table>";
@@ -70,9 +70,10 @@
     $id = $dados["id_turma"];
 
     if($_SESSION['tipo'] == 'D'){
-        $button = "<div class='novoAluno'>
+        $button = "<div class='buttons2'>
+        <div class='novoAluno'>
         <form action='/TCC/visualization/alunos/creatAlunos/createAlunos.php' method='POST'>
-            <input type='submit' name='novoAluno' value='Adicionar novo aluno'>
+            <input type='submit' name='novoAluno' id='btn' value='Adicionar novo aluno'>
             <input type='hidden' name='id' value='$id'>
             <input type='hidden' name='nome' value='$nome_turma'>
         </form>
@@ -80,10 +81,12 @@
 
     <div class='mudarAlunos'>
         <form action='/TCC/visualization/alunos/lista/mudarAluno.php' method='POST'>
-            <input type='submit' name='mudar' value='Mudar todos os alunos'>
-            <input type='hidden' name='turma' value='$id'>
+            <input type='submit' name='mudar' id='btn' value='Mudar todos os alunos'>
+            <input type='hidden' name='turma'  value='$id'>
         </form>
-    </div>";
+    </div>
+    </div>"
+    ;
     }
 
 ?>
@@ -92,10 +95,14 @@
     <head>
         <title>Alunos</title>
         <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="#">
+        <link rel="stylesheet" href="/TCC/CSS/lista/listaProfessores.css">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow&display=swap" rel="stylesheet">
     </head>
     <body>
-        <?php include_once("../../../visualization/menu.php");?>
+        <?php include_once("../../../visualization/men.php");?>
         
         <?php
             // echo $pesquisar;

@@ -10,7 +10,7 @@
         <title>Plano mensal</title>
     </head>
     <body>
-        <?php include_once("../../menu.php");?>
+        <?php include_once("../../men.php");?>
         <div>
             <h1>Plano Mensal</h1>
             <?php echo $div;?>
