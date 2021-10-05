@@ -45,6 +45,7 @@ create table contato_professor(
 );
 
 create table contato_aluno (
+	id_contato int auto_increment primary key,
 	id_aluno int,
     tipo_contato varchar(30),
     contato varchar(30),
@@ -105,12 +106,14 @@ create table plano_mensal(
 );
 
 create table topico_plano(
+	id_topico int not null auto_increment primary key,
 	id_plano int not null,
     topico varchar(100) not null,
     ctt_topico varchar(250) not null,
     foreign key(id_plano) references plano_mensal(id_plano) on delete cascade
 );
 
+drop table topico_plano;
 
 
 /*testes*/
@@ -196,5 +199,5 @@ SELECT id_plano FROM plano_mensal where MONTH(data) = 1 && YEAR(data) = 2021;
 
 SELECT tt_plano from plano_mensal where id_plano = 1;
 
-
+SELECT confirmacao from entrega where id_atividade = 2 and id_aluno = 1;
 

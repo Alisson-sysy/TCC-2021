@@ -1,0 +1,103 @@
+#atividadesLista{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#listaAtividade{
+    display: block;
+    width: 50vw;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    padding: 5px;
+    border-bottom: 1px solid #E6E6F0;
+    transition: .6s;
+    overflow-y: hidden;
+    cursor: pointer;
+}
+
+#listaAtividade:hover{
+    border-bottom: 1px solid #FF8F8F;
+}
+
+#listaAtividade input{
+    padding: 10px;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold; 
+    background: #FF8F8F;
+    margin-top: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    transition: .6s;
+    margin-right: .5vw;
+}
+
+#listaAtividade span{
+    display: flex;
+    justify-content: space-between;
+}
+
+#listaAtividade input:hover{ 
+    background: #f76262;
+}
+
+#addAtv{
+    padding: 10px;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold; 
+    background: #FF8F8F;
+    margin-top: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    transition: .6s;
+    margin-right: .5vw;
+}
+
+#desc{  
+    opacity: 0;
+    font-size: 0px;
+    transition: .6s;
+}
+
+.prin{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.click #desc{
+    opacity: 1;
+    font-size: 1rem;
+}
+
+#controle.click #listaAtividade{
+    /* height: 10vh; */
+    transition: .6s;
+    padding-bottom: 10px;
+    /* overflow-y: auto; */
+}
+
+.nomeAtv{
+    cursor: pointer;
+}
+
+
+@media (max-width: 900px){
+    #listaAtividade{
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 350px){
+    #listaAtividade input{
+        padding: 8px;
+        font-size: .8rem;
+    }
+}

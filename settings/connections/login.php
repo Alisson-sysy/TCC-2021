@@ -17,6 +17,7 @@
 
         $_SESSION["login"] = $login;
         $_SESSION["nome"] = $dados["Nome"];
+        $_SESSION["sobrenome"] = $dados["Sobrenome"];
         $_SESSION["tipo"] = $dados["Tipo_usuario"];
         $_SESSION["id"] = $dados["ID_usuario"];
         $_SESSION["logado"] = $dados["logado"];

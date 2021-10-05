@@ -19,9 +19,11 @@
         $id = $_GET["id2"];
 
         $sql2 = "DELETE FROM contato_aluno WHERE id_aluno = $id";
+        $sql3 = "DELETE FROM entrega WHERE id_aluno = $id";
         $sql = "DELETE FROM aluno WHERE id_aluno = $id";
 
         mysqli_query($bd, $sql2) or die(mysqli_error($bd));
+        mysqli_query($bd, $sql3) or die(mysqli_error($bd));
         mysqli_query($bd, $sql) or die(mysqli_error($bd));
     }
 
@@ -55,7 +57,7 @@
                         <input type='submit' name='acao' id='btn' value='Ver mais'>
                     </form>";
 
-            $table = $table."<div id='classItem'><p class='PInfo'>$nome</p><p class='PInfo'>$sobrenome</p>$excluir $editar $more </div>";
+            $table = $table."<div class='classItemSup'><p class='PInfo'>$nome</p><p class='PInfo'>$sobrenome</p>$excluir $editar $more </div>";
 
         }
         $table = $table."</table>";

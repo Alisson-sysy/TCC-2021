@@ -4,6 +4,8 @@
         session_start();
     }
 
+    include_once("../../function.php");
+
     if(isset($_POST["new"]) || isset($_GET['ctt'])){
         if($_SESSION["tipo"] == "D"){
             if($_POST["new"] === "newCtt"){
@@ -26,7 +28,7 @@
 
                 </form>";
 
-                header("location: /TCC/visualization/alunos/maisInfo/maisInfo.php?id=$idAluno?ctt=nw");
+                header("location: /TCC/visualization/alunos/maisInfo/maisInfo.php?id=$idAluno&&ctt=nw");
             }    
         }
     }

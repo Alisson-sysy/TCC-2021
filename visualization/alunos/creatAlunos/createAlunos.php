@@ -154,7 +154,7 @@
                         <select name="" id="" disabled required <?php echo $tuu?>>
                             <?php echo $select_valueP?>
                         </select>
-                        <select name="nomeTurma " id="tipo" required <?php echo $tu?>>
+                        <select name="nomeTurma" id="tipo" required <?php echo $tu?>>
                             <?php echo $select_valueP?>
                         </select>
                     </div>

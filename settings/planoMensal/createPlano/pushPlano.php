@@ -39,7 +39,7 @@
         }
     }
     
-    if($_POST["newTop"]){
+    if(isset($_POST["newTop"])){
 
         $tituloTop = $_POST["titTop"] != "" ? mysqli_real_escape_string($bd, $_POST["titTop"]): header("location: /TCC/visualization/planoMensal/createPlano/createPlano.php?error=12");    
         $CttTop = $_POST["Ctt"] != "" ? mysqli_real_escape_string($bd, $_POST["Ctt"]): header("location: /TCC/visualization/planoMensal/createPlano/createPlano.php?error=13");    
@@ -58,6 +58,21 @@
         }
 
         echo $mensagem;
+    }
+
+    if(isset($_POST["submitButton"]) && $_POST["submitButton"] == "Editar"){
+        $tituloTop = $_POST["titTop"] != "" ? mysqli_real_escape_string($bd, $_POST["titTop"]): header("location: /TCC/visualization/planoMensal/createPlano/createPlano.php?error=12");    
+        $CttTop = $_POST["Ctt"] != "" ? mysqli_real_escape_string($bd, $_POST["Ctt"]): header("location: /TCC/visualization/planoMensal/createPlano/createPlano.php?error=13");
+        $idTopic = $_POST['idTopic'];
+
+        $sqlUpdTopic = "UPDATE topico_plano
+                        set topico = '$tituloTop',
+                        ctt_topico = '$CttTop'
+                        where id_topico = $idTopic";
+        mysqli_query($bd, $sqlUpdTopic) or die(mysqli_error($bd));
+
+        header("location: /TCC/visualization/planoMensal/list/planoLista.php");
+
     }
     
 ?>

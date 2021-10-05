@@ -31,7 +31,7 @@ textarea:focus, input:focus, select:focus {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 95vw;
+    
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
 }
@@ -43,23 +43,37 @@ textarea:focus, input:focus, select:focus {
     color: white;
     background-color: #FF8F8F;
     transition: .6s;
+    cursor: pointer;
 }
 
 #btn:hover{
     background-color: #ff6e6e;
 }
 
-#classItem{
+.classItem{
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
     justify-content: space-around;
     width: 80%;
     border-bottom: 1px solid #E6E6F0;
     transition: .6s;
 }
 
-#classItem:hover{
+.classItem:hover{
+    border-bottom: 1px solid #FF8F8F;
+}
+.classItemSup{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 80%;
+    border-bottom: 1px solid #E6E6F0;
+    transition: .6s;
+    align-items: flex-end;
+}
+
+.classItemSup:hover{
     border-bottom: 1px solid #FF8F8F;
 }
 
@@ -100,11 +114,16 @@ textarea:focus, input:focus, select:focus {
     margin-top: 5vh;
 }
 
+.btnContainer{
+    display: flex;
+    flex-direction: row;
+}
 
-@media(min-width: 900px){
-    #classItem{
+
+@media(min-width: 1000px){
+    .classItem{
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: space-around;
         width: 50%;
     }
@@ -116,5 +135,85 @@ textarea:focus, input:focus, select:focus {
         justify-content: space-between;
     }
 
+    .btnContainer{
+        margin: 0px 0px 10px 0px;
+    }
+
+}
+
+.controle{
+    flex-direction: column;
+}
+
+#desc{  
+    opacity: 0;
+    font-size: 0px;
+    transition: .6s;
+}
+
+.prin{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.click #desc{
+    opacity: 1;
+    font-size: 1rem;
+}
+
+.click{
+    transition: .6s;
+    padding-bottom: 10px;
+    /* overflow-y: auto; */
+}
+
+.classItemSup{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 50%;
+}
+
+@media (max-width: 650px){
+    .classItem{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .PInfo{
+        margin: 5px;
+    }
+    .btnContainer{
+        margin: 0px 0px 10px 0px;
+    }
+}
+
+@media (max-width: 540px){
+    #head{
+        flex-direction: column-reverse;
+        margin: 0px 0px 20px 0px;
+    }
+
+    #head p{
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 350px){
+    #btn{
+        padding: 5px;
+        font-size: .9rem;
+    }
+    
+    #searching{
+        padding: 1px;
+    }
+
+    #listaText{
+        font-size: .1px;
+    }
+    
 }
 

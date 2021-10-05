@@ -11,12 +11,19 @@
         $id_turma = $_GET["id"];
 
         $sqlIdAluno = "SELECT id_aluno from aluno where id_turma = $id_turma";
+        echo $id_turma;
         $result =  mysqli_query($bd, $sqlIdAluno) or die(mysqli_error($bd));
-        $dados0 = mysqli_fetch_assoc($result);
 
         while($dados0 = mysqli_fetch_assoc($result) ){
-            $id_aluno = $dados["id_aluno"];
-            $sql = "DELETE FROM contato_aluno WHERE id_aluno = $id_aluno";
+            $id_aluno = $dados0["id_aluno"];
+            
+            $sql2 = "DELETE FROM contato_aluno WHERE id_aluno = $id_aluno";
+            $sql3 = "DELETE FROM entrega WHERE id_aluno = $id_aluno";
+            $sql = "DELETE FROM aluno WHERE id_aluno = $id_aluno";
+
+            mysqli_query($bd, $sql2) or die(mysqli_error($bd));
+            mysqli_query($bd, $sql3) or die(mysqli_error($bd));
+            mysqli_query($bd, $sql) or die(mysqli_error($bd));
         }
         //Pegar os Id dos alunos que participam da turma que vai se apagada
 
@@ -96,9 +103,9 @@
 
                     
             if($tipo_usuario == "D"){
-                $table = $table."<div id='classItem'><p class='PInfo'>$nome_turma</p><p class='PInfo'>$periodo_aula</p>$alunos $atividades $excluir $editar </div>";
+                $table = $table."<div class='classItemSup'><p class='PInfo'>$nome_turma</p><p class='PInfo'>$periodo_aula</p><div class='btnContainer'>$alunos $atividades $excluir $editar</div></div>";
             }else if($tipo_usuario == "P"){
-                $table = $table."<div id='classItem'><p class='PInfo'>$nome_turma</p><p class='PInfo'>$periodo_aula</p>$alunos $atividades $excluir $editar </div>";
+                $table = $table."<div class='classItemSup'><p class='PInfo'>$nome_turma</p><p class='PInfo'>$periodo_aula</p><div class='btnContainer'>$alunos $atividades $excluir $editar</div></div>";
             }
 
         }

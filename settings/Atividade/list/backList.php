@@ -3,6 +3,7 @@
     $pathConnect = dirname(__FILE__) . "./../../../settings/connections/connect.php";
     include_once($pathConnect);
 
+
     if(isset($_POST["idTurma"])){
         $idTurma = $_POST["idTurma"];
     }else{
@@ -14,9 +15,11 @@
 
     $atividades = array();
     $x = 0;
+    $aux = 0;
 
     while($dados = mysqli_fetch_assoc($resultado)){
-        $div = "<div>";
+        $div = "<div id='controle$aux'>";
+        $div = $div."<div id='listaAtividade' onclick='muda($aux)'>";
 
         //pegar os dados do banco
         $idAtividade = $dados["id_atividade"];
@@ -26,13 +29,10 @@
         $desc = $dados["desc_atv"];
 
         //adicionar informações
-        $div = $div."<p>Nome da Atividade:". $nomeAtividade."</p>";
-        $div = $div."<p>Descrição:".$desc."</p>";
-        $div = $div."<p>Data de entrega:".$horaEntrega."</p>";
-        $div = $div."<p>Hora de entrega:".$diaEntrega."</p>";
+        $div = $div."<div class='prin'><span id='nomeAtv'  class='nomeAtv'>".$nomeAtividade."</span>";
 
         //btn para progresso das atividades
-        $div = $div."
+        $div = $div." <span>
             <form method='POST' action='/TCC/visualization/atividades/progresso/addProgressoFront.php'>
                 <input type='hidden' name='addProg'>
                 <input type='hidden' name='idTurma' value='$idTurma'>
@@ -48,12 +48,26 @@
                 <input type='hidden' name='idAtividade' value='$idAtividade'>
                 <input type='submit' value='Ver Progresso'>
             </form>
+            </span>
         ";
-
-        $div = $div."<hr>";
+        $div = $div."</div>";
+        $div = $div."<span id='desc'>".$desc."<br>Data: ".$diaEntrega."<br>Hora: ".$horaEntrega."</span>";
+        $div = $div."</div>";
         $div = $div."</div>";
         $atividades[$x] = $div;
         $x ++;
+        $aux++;
     }
 
 ?>
+
+
+<script>
+
+    function muda(aux){
+        const  lisAtv = document.getElementById('controle'+aux);
+        
+        lisAtv.classList.toggle('click');
+    }
+
+</script>

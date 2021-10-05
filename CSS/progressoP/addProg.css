@@ -1,0 +1,80 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+}
+
+.aluno{
+    width: 50vw;
+    margin: 10px 0 0 0 ;display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 25%;
+    align-items: flex-end;
+    border-bottom: 1px solid #E6E6F0;
+    transition: .6s;
+}
+
+.aluno:hover{
+    border-bottom: 1px solid #FF8F8F;
+}
+
+.aluno input{
+    padding: 10px;
+    border: none;
+    margin: 0px 1vw 1vh 0;
+    border-radius: 5px;
+    background-color: #FF8F8F;
+    cursor: pointer;
+    color: white;
+    transition: .6s;
+}
+
+
+.aluno input:hover{
+    background-color: #fc6d6d;
+    
+}
+
+.aluno div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.aluno form{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 2fr;
+    grid-gap: 10px;
+}
+
+.aluno div{
+    display: grid;
+}
+
+#fotoAluno{
+    border-radius: 50%;
+    width: 5vw;
+    cursor: pointer;
+    
+}
+
+.label{
+    max-width: 25%;
+}
+
+.imgAtividade{
+    margin: 0;
+    padding: 0;
+    width: 20px;
+    cursor: pointer;
+}

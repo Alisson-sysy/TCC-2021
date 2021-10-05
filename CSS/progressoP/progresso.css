@@ -1,0 +1,74 @@
+.main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#progAluno{
+    width: 50%;
+
+}
+
+#aluno{
+    padding: 0px 2vw;
+    margin-top: 2vh;
+    display: flex;
+    flex-direction: column;
+    transition: .6s;
+    border-bottom: 1px solid rgba(165, 165, 165, 0.267);
+}
+
+#aluno p{
+    margin: 5px;
+}
+
+#nomeAluno{
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    margin: 0px;
+}
+
+.end{
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    background: rgba(0, 255, 42, 0.459);
+    border-radius: 5px;
+    margin: 10px 0 10px 0;
+    padding: 10px;
+}
+
+.mid{
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    background: rgba(255, 255, 0, 0.459);
+    border-radius: 5px;
+    margin: 10px 0 10px 0;
+    padding: 10px;
+}
+.divTxt{
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.5rem;
+    margin: 15px 0 0 0;
+}
+
+#dadosEntrega{
+    display: flex;
+    flex-direction: column;
+    padding: 0 0 0 10px;
+    border-radius: 10px;
+    border: .6px solid rgba(182, 182, 182, 0.349);
+    transition: .6s;
+}
+
+#nomeAlunoN{
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+    
+}
+
+

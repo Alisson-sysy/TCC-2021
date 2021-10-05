@@ -62,7 +62,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -90,17 +90,30 @@
                 <h5 id="nome"><?php  echo "<p class='textoFirstInfo'>". $nome.  " " .$sobrenome ."</p>"?></h5>
             </div>
             <h1 id='tituloInfoAluno'>Informações do aluno</h1>
+            <p>Nome do Pai: <?php echo $pai?></p>
+            <p>nome da Mãe: <?php echo $mae?></p>
             <p>Data de Nascimento: <?php echo $data?></p>
 
 
-            <p>Turma: <?php echo $nomeTurma?></p>
-            <p>Professor: <?php echo $nomeProfessor ?></p>
+            <p><span>Turma:</span> <?php echo $nomeTurma?></p>
+            <p><span>Professor:</span><?php echo $nomeProfessor ?></p>
 
             <p>Contatos:</p>
             <?php 
             
                 $sql3 = "SELECT * FROM contato_aluno WHERE id_aluno = $id_aluno";
                 $resultado3 = mysqli_query($bd, $sql3);
+                if($_SESSION["tipo"] == "D"){
+                    $novoCtt = "<form action='../../../settings/alunos/maisInfoBack/newCtt.php' method='POST'>
+                        <input type='hidden' name='new' value='$criarContato'>
+                        <input type='hidden' name='returnId' value='$id_aluno'>
+                        <input type='submit' id='createContato' value='$criarContatoText'>
+                    </form>";
+
+                }else{
+                    $ex = "";
+                    $novoCtt = "";
+                }
                 while($dados3 = mysqli_fetch_assoc($resultado3)){
                     $Tcontato = $dados3["tipo_contato"];
                     $Vcontato = $dados3["contato"]; 
@@ -111,34 +124,42 @@
 
                     if($_SESSION["tipo"] == "D"){
                         $ex = "<form method='POST'>
-                        <input type='submit' name='excluir' id='deleteContato' value='✗'/>
+                            <input type='submit' name='excluir' id='deleteContato' value='✗'/>
                         </form>";
-
-                        $novoCtt = "<form action=' method='POST'>
-                            <input type='hidden' name='new' value='$criarContato'>
-                            <input type='hidden' name='returnId' value='$id_aluno'>
-                            <input type='submit' id='createContato' value='$criarContatoText'>
-                        </form>";
-                    }else{
-                        $ex = "";
-                        $novoCtt = "";
                     }
+    
 
-                    echo '<div id="contato">'.$Tcontato.": ". $Vcontato.$ex.'</div>';
+                    echo '<div id="contato">'.$Tcontato.": ". $Vcontato.    '</div>';
                 }
-                echo $novoCtt;
+                // echo $novoCtt;
             ?>
 
 
                 <div class="obsAluno">
-                    <h1>Observações do aluno</h1>
-                    <p><?php echo $obs?></p>
+                    <h1 id='tituloInfoAluno'>Observações do aluno</h1>
+                    <?php echo $div?>   
+                    <?php 
+
+                        if($_SESSION["tipo"] == "P"){
+                            $idUsuario = $_SESSION["id"];
+                            echo "<form action='../obsAluno/createObs.php' method='POST'>
+
+
+                            <input type='hidden' name='idAluno' value='$id_aluno'>
+                            <input type='hidden' name='idProfessor' value='$idUsuario'>
+                            <input type='submit' id='addObsBtn' value='Adicionar Observação' >
+                
+                        </form>";
+                        }
+                    
+                    ?>
                 </div>
 
                 <div class="obs">
                     <h1>Atividade do aluno</h1>
                     <p><?php echo $divAtv?></p>
                 </div>
+
         </div>
 
     </body>

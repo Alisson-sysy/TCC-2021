@@ -12,6 +12,12 @@
     /* position: relative; */
 }
 
+.resposta{
+    color: rgb(85, 85, 85);
+}
+
+
+
 .texto {
     opacity: 0;
     position: absolute;
@@ -39,6 +45,7 @@
     height: 150px;
     display: block;
     cursor: pointer;
+    transition: .6s;
     /* position: absolute; */
 }
 
@@ -69,10 +76,14 @@
 
 .obsAluno{
     margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .obsAluno h1, .obsAluno p{
     text-align: right;
+    font-family: 'Poppins', sans-serif;
 }
 
 #deleteContato{
@@ -111,4 +122,223 @@
 #createContato:hover{
     background: #fc7272;
     color: white;
+}
+
+.ctt{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 60%;
+    flex-direction: row;
+    background-color: white;
+    box-shadow: 1px -1px 4px 0px rgba(0, 0, 0, 0.10);
+    padding: .5vw 1vw;
+    transition: .3s;
+}
+
+.ctt:hover{
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.15);
+    border-bottom: 3rem;
+    z-index: 100;
+    cursor: pointer;
+}
+
+.entrega{
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-size: 1rem;
+    text-align: right;
+    width: 50%;
+}
+
+.obs{
+    margin-top: 20px !important;
+}
+
+#addObsBtn{
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #FF8F8F;
+    color: white;
+    margin: 20px 0 0 0;
+}
+
+.fotoImg{
+    width: 10px;
+}
+
+#imgTrabalho{
+    position: fixed;
+    top: 20%;
+    right: 25%;
+    width:  50%;
+    height: 60%;
+    border-radius: 10px;
+    border: 1px solid #FF8F8F;
+    display: none;
+    transition: .6s ;
+}
+
+#imgAtividadeContainer{
+    margin: 0px;
+    background-color: rgba(0, 0, 0, 0.199);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    display: none;
+    text-align: center;
+}
+
+.imgTextTopo{
+    position: absolute;
+    top: 0px;
+    color: white;
+    background-color: #FF8F8F;
+    width: 100% !important;
+    z-index: 20000;
+}
+
+.igmTextBottom{
+    position: absolute;
+    bottom: 0px;
+    color: white;
+    background-color: #FF8F8F;
+    width: 100% !important;
+}
+
+#btnImg{
+    padding: 5px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #FF8F8F;
+}
+
+#excluirObs{
+    padding: 10px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #FF8F8F;
+    transition: .6s;
+}
+
+#excluirObs:hover{
+    background-color: #ff7e7e;
+}
+
+
+
+.obsUn{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    border-bottom: 1px solid #E6E6F0;
+    margin: 0px 0px 10px 0;
+}
+
+
+@media (max-width: 1050px){
+    .textoFirstInfo{
+        font-size: 2rem !important;
+    }
+}
+
+@media (max-width: 700px){
+    .textoFirstInfo{
+        font-size: 1.5rem !important;
+    }
+
+    #imgTrabalho{
+        right: 15%;
+        width:  70%;
+        
+    }
+}
+
+@media (max-width: 580px){
+    .textoFirstInfo{
+        font-size: 1.3rem !important;
+    }
+    #firstInfo img{
+        max-width: 100%;
+        width: 100px;
+        height: 100px;
+        display: block;
+        cursor: pointer;
+        /* position: absolute; */
+    }
+    .infoAluno {
+        padding: 0px 15px;
+        transition: .6s;
+    }
+
+    .texto {
+        opacity: 0;
+        position: absolute;
+        display: flex;
+        height: 100px;
+        width: 100px;
+        background-color: rgba(0,0,0,0.5);
+        color:#fff;
+        top: 80px;
+        cursor: pointer;
+        font-weight: bold;
+        font-family: 'Poppins', sans-serif;
+        transition: .4s;
+        font-size: .8rem;
+    }
+
+    .obsAluno{
+        margin-left: 0px;
+        align-items: flex-start;
+        margin: 30px 0px 0px 0px;
+    }
+
+    .obsAluno h1, .obsAluno p{
+        text-align: left;
+    }
+
+
+    #imgTrabalho{
+        right: 10%;
+        width:  80%;
+        
+    }
+
+    .ctt{
+        width: 90%;
+    }
+
+    #tituloInfoAluno{
+        font-size: 1rem;
+    }
+
+    .obsUn{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        border-bottom: 1px solid #E6E6F0;
+        margin: 0px 0px 10px 0;
+    }
+}
+
+@media (max-width: 350px){
+    #imgTrabalho{
+        right: 0px;
+        width:  100%;
+    }
 }

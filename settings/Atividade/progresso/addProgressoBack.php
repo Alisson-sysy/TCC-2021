@@ -1,4 +1,14 @@
+<script>
+
+        function muda(x){
+            document.getElementById("imgAtividade" + x).src = "/TCC/img/reflex-photo-camera-green.png"; 
+        }
+    
+
+</script>
 <?php
+
+    date_default_timezone_set('America/Sao_Paulo');
 
     $pathConnect = dirname(__FILE__) . "./../../../settings/connections/connect.php";
     include_once($pathConnect);
@@ -38,51 +48,48 @@
         $img = $_FILES['img'];
     }
 
+    $h = 0;
     
     if($qtdResultado == 0){
-        $div = "<div>";
             $sqlSelect = "select * from aluno where id_turma = $idTurma";
             $resultado = mysqli_query($bd, $sqlSelect) or die(mysqli_errno());
-            
+            $div = "";
             while($dados = mysqli_fetch_assoc($resultado)){
+                $foto = $dados["foto"];
                 $nome = $dados["nome"];
                 $sobrenome = $dados["sonbrenome"];
                 $id = $dados['id_aluno'];
+
                 $feito = 
                 "  
-                <form method='POST' action='/TCC/settings/Atividade/progresso/addProgressoBack.php?ia=$idAtividade&&it=$idTurma'>
-                    <input type='hidden' name='feito'>
-                    <input type='hidden' name='aluno' value='$id'>
-                    <input type='hidden' name='conf'>
-                    <input type='submit' value='✓'>
-                </form>
-                ";
-
-                $nFeito = 
-                "  
-                <form method='POST' action='/TCC/settings/Atividade/progresso/addProgressoBack.php?ia=$idAtividade&&it=$idTurma'>
-                    <input type='hidden' name='nFeito' >
-                    <input type='hidden' name='aluno' value='$id'>
-                    <input type='hidden' name='conf'>
-                    <input type='submit' value='✗'>
-                </form>
-                ";
-
-                $addFoto = "
                 <form method='POST' enctype='multipart/form-data' action='/TCC/settings/Atividade/progresso/addProgressoBack.php?ia=$idAtividade&&it=$idTurma'>
                     <input type='hidden' name='aluno' value='$id'>
-                    <input type='hidden' name='atividade' value='$idAtividade'>
-                    <label for='img'><img src='/TCC/settings/atividade/fotosAtv/default.png' width='300px' ></label>
-                    <input type='FILE' id='img' name='img' onchange='form.submit()' hidden>
+                    <input type='hidden' name='conf'>
+                    <div class='label'>
+                        <label for='foto$h'><img type='image' id='imgAtividade$h'  class='imgAtividade' src='/TCC/img/reflex-photo-camera.png'></label>
+                        <input type='file' name='foto' id='foto$h' onchange='muda($h)'  hidden>
+                    </div>
+                    <div>
+                        <label for='fz'>Fez</label>
+                        <input type='radio' name='fz' value='fz'>
+                    </div>
+                    <div>
+                        <label>Não fez</label>
+                        <input type='radio' name='fz' value='fnz'>
+                    </div>
+                    <input type='submit' Value='Ok'>
                 </form>
                 ";
 
+                $h++;
 
-                $div = $div."<p>".$nome." ".$sobrenome." ".$feito." ".$nFeito." ". $addFoto."</p>";
+                    $div = $div."<div class='aluno'> $nome $sobrenome <div> $feito</div></div>";
+                    $div = $div."";
             }
-        $div = $div."</div>";
+            
 
     }else{
+        $h = 0;
 
         while($dadosEntrega = mysqli_fetch_assoc($resultadoEntrega)){
             $id_alunoEntrega = $dadosEntrega["id_aluno"];
@@ -109,52 +116,51 @@
         }
 
         $div = "<div>";
+
         for($y=0;$y<count($valores);$y++){
             $sqlSelect = "select * from aluno where id_aluno = $valores[$y]";
             $resultado = mysqli_query($bd, $sqlSelect) or die(mysqli_errno());
             while($dados = mysqli_fetch_assoc($resultado)){
+                $foto = $dados["foto"];
                 $nome = $dados["nome"];
                 $sobrenome = $dados["sonbrenome"];
                 $id = $dados['id_aluno'];
+
+
                 $feito = 
                 "  
-                <form method='POST' action='/TCC/settings/Atividade/progresso/addProgressoBack.php?ia=$idAtividade&&it=$idTurma'>
-                    <input type='hidden' name='feito'>
+                <form method='POST' enctype='multipart/form-data' action='/TCC/settings/Atividade/progresso/addProgressoBack.php?ia=$idAtividade&&it=$idTurma'>
                     <input type='hidden' name='aluno' value='$id'>
                     <input type='hidden' name='conf'>
-                    <input type='submit' value='✓'>
+                    <div class='label'>
+                        <label for='foto'><img type='image' id='imgAtividade$h'  class='imgAtividade' src='/TCC/img/reflex-photo-camera.png'></label>
+                        <input type='file' name='foto' id='foto' onchange='muda($h)'  hidden>
+                    </div>
+                    <div>
+                        <label for='fz'>Fez</label>
+                        <input type='radio' name='fz' value='fz'>
+                    </div>
+                    <div>
+                        <label>Não fez</label>
+                        <input type='radio' name='fz' value='fnz'>
+                    </div>
+                    <input type='submit' Value='Ok'>
                 </form>
                 ";
 
-                $nFeito = 
-                "  
-                <form method='POST'  action='/TCC/settings/Atividade/progresso/addProgressoBack.php?ia=$idAtividade&&it=$idTurma'>
-                    <input type='hidden' name='nFeito'>
-                    <input type='hidden' name='aluno' value='$id'>
-                    <input type='hidden' name='conf' value='E'>
-                    <input type='submit' value='✗'>
-                </form>
-                ";
+                $h++;
 
-                $addFoto = "
-                <form method='POST' enctype='multipart/form-data' action='/TCC/settings/Atividade/progresso/addProgressoBack.php?ia=$idAtividade&&it=$idTurma'>
-                    <input type='hidden' name='foto'>
-                    <input type='hidden' name='aluno' value='$id'>
-                    <input type='hidden' name='atividade' value='$idAtividade'>
-                    <label for='img'><img src='/TCC/settings/atividade/fotosAtv/default.png' width='300px' ></label>
-                    <input type='file' id='img' name='img' onchange='form.submit()' hidden>
-                </form>
-                ";
+                $foto = "<img src='$foto' id='fotoAluno'>";
 
-
-                $div = $div."<p>".$nome." ".$sobrenome." ".$feito." ".$nFeito." ". $addFoto."</p>";
+                $div = $div."<div class='aluno'> <p>$nome $sobrenome</p> $feito </div>";
             }
         }
-        $div = $div."</div>";
         if(count($valores) == 0){
             $div = "Todos os alunos Já entregaram as atividades";
         }
     }
+
+    $div = $div."</div>";
 
 
     //Adicionar entrega de tarefa
@@ -163,23 +169,93 @@
 
     if(isset($_POST['conf'])){
         $id_aluno = $_POST['aluno'];
-        
-        if(isset($_POST['feito'])){
+        $foto = $_FILES['foto'];
+
+        if($_POST['fz'] == "fz"){
             $fez = 'E';
         }else{
             $fez = 'N';
         }
 
 
-        // $sqlInsert = "insert into entrega (id_atividade, id_aluno, foto, confirmacao, dia_entrega, hora_entrega)
-        // values ($idAtividade, $id_aluno, '$img', '$fez', '".date('H:i:s')."', '".date('Y-d-m')."')";
 
-        // mysqli_query($bd, $sqlInsert) or die(mysqli_error($bd)."$idAtividade");
-        $sqlInsert = "insert into entrega (id_atividade, id_aluno, confirmacao, dia_entrega, hora_entrega)
-        values ($idAtividade, $id_aluno, '$fez', '".date('H:i:s')."', '".date('Y-d-m')."')";
+
+        //Se a foto existir
+        if (!empty($foto["name"])){
+                
+            $nome_imagem = "amogus";
+            // Largura máxima em pixels
+            $largura = 150000;
+            // Altura máxima em pixels
+            $altura = 180000;
+            // Tamanho máximo do arquivo em bytes
+            $tamanho = 10000000;
+        
+            $error = array();
+        
+            // Verifica se o arquivo é uma imagem
+            if(!preg_match("/^image\/(pjpeg|jpeg|png|gif|bmp)$/", $foto["type"])){
+                $error[1] = "Isso não é uma imagem.";
+            } 
+            
+            // Pega as dimensões da imagem
+            $dimensoes = getimagesize($foto["tmp_name"]);
+            
+            // Verifica se a largura da imagem é maior que a largura permitida
+            if($dimensoes[0] > $largura) {
+                $error[2] = "A largura da imagem não deve ultrapassar ".$largura." pixels";
+            }
+        
+            // Verifica se a altura da imagem é maior que a altura permitida
+            if($dimensoes[1] > $altura) {
+                $error[3] = "Altura da imagem não deve ultrapassar ".$altura." pixels";
+            }
+                
+            // Verifica se o tamanho da imagem é maior que o tamanho permitido
+            if($foto["size"] > $tamanho) {
+                $error[4] = "A imagem deve ter no máximo ".$tamanho." bytes";
+            }
+        
+            // Se não houver nenhum erro
+            if (count($error) == 0) {
+
+                $a = "aqui";
+                
+                // Pega extensão da imagem
+                preg_match("/\.(gif|bmp|png|jpg|jpeg){1}$/i", $foto["name"], $ext);
+        
+                // Gera um nome único para a imagem
+                $nome_imagem = md5(uniqid(time())) . "." . $ext[1];
+
+                // Caminho de onde ficará a imagem
+                $caminho_imagem = "../fotosAtv/fotos/" . $nome_imagem;
+                $caminhoImgDireto = "/TCC/settings/Atividade/fotosAtv/fotos/" . $nome_imagem;
+                // Faz o upload da imagem para seu respectivo caminho
+                move_uploaded_file($foto["tmp_name"], $caminho_imagem);
+                    
+            }
+            
+            // Se houver mensagens de erro, exibe-as
+             if (count($error) != 0) {
+                foreach ($error as $erro) {
+                    echo $erro . "<br />";
+                }
+            }
+        }
+
+
+        $sqlInsert = "insert into entrega (id_atividade, id_aluno, foto, confirmacao, dia_entrega, hora_entrega)
+        values ($idAtividade, $id_aluno, '$caminhoImgDireto', '$fez', '".date('Y-d-m')."', '".date('H:i:s')."')";
 
         mysqli_query($bd, $sqlInsert) or die(mysqli_error($bd)."$idAtividade");
 
+        if ($_FILES['foto']['size'] == 0){
+            echo "vazio";
+        }
+
+            
+            echo "Amogus".date('H:m:s');
+    
         header("location:  http://localhost/TCC/visualization/atividades/progresso/addProgressoFront.php?ia=$idAtividade&&it=$idTurma");
 
     }
@@ -188,3 +264,4 @@
     
     
 ?>
+

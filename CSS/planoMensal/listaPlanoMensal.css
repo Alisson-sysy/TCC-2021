@@ -1,0 +1,182 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.main{
+    display: flex;
+    align-items: center;
+    flex-direction: column; 
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 100px;
+}
+
+#data{
+    font-weight: bold;
+}
+
+/* Topicos */
+.topicos{
+    margin: 15px 0;
+    padding: 10px;
+    width: 100%;
+}
+
+#ttTopico{
+    font-family: 'Bebas Neue', cursive;
+    font-size: 2rem;
+   
+}
+
+#barrinha{
+    border-top: 7px solid rgb(245, 130, 130);
+    width: 10%;
+}
+
+#cttTopico{
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    word-wrap:  break-word;
+    max-width: 50%;
+}
+
+.topico{
+    margin: 20px 0 0 0;     
+    width: 100%;
+}
+
+.btn{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.btn input{
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    background-color: #FF8F8F;
+    color: white;
+    border: 0;
+    border-radius: 3px;
+    transition: .6s;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;    
+}
+
+#btnEditar{
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    background-color: #FF8F8F;
+    color: white;
+    border: 0;
+    border-radius: 3px;
+    transition: .6s;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold; 
+}
+
+#btnEditar:hover{
+    background-color: rgb(245, 130, 130); 
+}
+
+.btn input:hover{
+    background-color: #fd7c7c;
+}
+
+.plano{
+    margin: 10px 0px 0px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 70vw;
+    padding: 10px;
+    transition: .6s;
+    border-bottom: 1px solid #E6E6F0;
+}
+
+.plano:hover{
+    background-color: rgb(245, 241, 241);
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.plano h1{
+    font-family: 'Bebas Neue', cursive;
+}
+
+#novoPlano{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    bottom: 5%;
+    right: 2%;
+    color: white;
+    border-radius: 50px;
+    background-color: #FF8F8F;
+    text-decoration: none;
+    box-shadow: 1px 1px 2px #888;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    transition: .6s;
+}
+
+#novoPlano:hover{
+    background-color: #fd5757;
+}
+
+#topico1{
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    align-items: flex-end; 
+}
+
+#topico0{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    align-items: flex-start;
+}
+
+
+
+@media (max-width: 600px){
+    .plano{
+        width: 90vw;
+    }
+
+    
+}
+
+@media (max-width: 400px){
+    #novoPlano{
+        width: 50%;
+        margin: 10px 0 10px calc(50% - 25%);
+    }
+
+    #cttTopico{
+        font-size: .8rem;
+        transition: .6s;
+    }
+
+    .btn input{
+        font-size: .6rem;   
+    }
+
+    .btn{
+        width: 100%;
+        align-items: space-between;
+    }
+
+    .plano h1{
+        font-size: 1.5rem;
+        transition: .6s;
+    }
+
+}

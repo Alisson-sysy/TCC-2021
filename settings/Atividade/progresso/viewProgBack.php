@@ -21,6 +21,8 @@
     $h = 0;
     $fez = array();
     $nFez = array();
+    $valoresAlunoEntrega = array();
+    
 
     while($dadosEntrega = mysqli_fetch_assoc($resultadoEntrega)){
         $id_alunoEntrega = $dadosEntrega["id_aluno"];
@@ -46,33 +48,56 @@
             }
     }
 
-    $div = "<div>";
+    $div = "<div id='progAluno'>";
     //se todos os alunos já fizeram as atividades, mostre 'Tarefa Finalizada'
     if(count($nFez) < 1){
-        $div = $div.'<h5>Tarefa Finalizada</h5>';
+        $div = $div.'<div class="end">Tarefa Finalizada</div>';
     }else{
-        $div = $div.'<h5>Tarefa Pendente</h5>';
+        $div = $div.'<div class="mid">Tarefa Pendente</div>';
     }
 
-    $div = $div.'<br>Alunos que fizeram a atividade<br>';
+    $div = $div.'<p class="divTxt">Alunos que fizeram a atividade</p>';
 
     for($a=0;$a<count($fez);$a++){
         $sqlSelect = "SELECT * from aluno where id_aluno = $fez[$a]";
         $sqlAlunoFez = mysqli_query($bd, $sqlSelect) or die(mysqli_errno());
         $dadosAlunoFez = mysqli_fetch_assoc($sqlAlunoFez);
         $nomeAluno = $dadosAlunoFez['nome'];
+        $sobrenome = $dadosAlunoFez['sonbrenome'];
 
-        $div = $div."Nome: $nomeAluno<br>";
+        // informações da entrega
+        $sqlEntrega = "SELECT * from entrega where id_aluno = $fez[$a] and id_atividade = $idAtividade";
+        $sqlAlunoFez = mysqli_query($bd, $sqlEntrega) or die(mysqli_errno());
+        $infoEntrega = mysqli_fetch_assoc($sqlAlunoFez);
+        $horaEntrega = $infoEntrega["hora_entrega"];
+        $diaEntrega = $infoEntrega["dia_entrega"];
+
+        $div = $div."<div id='aluno'>";
+        $div = $div."<p id='nomeAluno'>$nomeAluno $sobrenome</p>";
+        $div = $div."
+            <p id='nomeAluno'>Dia: $diaEntrega</p>
+            <p id='nomeAluno'>Hora: $horaEntrega</p>
+            ";
+        
+        $div = $div."</div>";
     }
 
-    $div = $div.'<br>Alunos que não fizeram a atividade<br>';
+    $div = $div.'<p class="divTxt">Alunos que não fizeram a atividade</p>';
     for($b=0;$b<count($nFez);$b++){
         $sqlSelect = "SELECT * from aluno where id_aluno = $nFez[$b]";
         $sqlAlunoFez = mysqli_query($bd, $sqlSelect) or die(mysqli_errno());
         $dadosAlunoFez = mysqli_fetch_assoc($sqlAlunoFez);
         $nomeAluno = $dadosAlunoFez['nome'];
-
-        $div = $div."Nome: $nomeAluno<br>";
+        $sobrenome = $dadosAlunoFez['sonbrenome'];
+        $div = $div."<div id='aluno'>";
+        $div = $div."<p id='nomeAluno'>$nomeAluno $sobrenome</p>";
+        $div = $div."</div>";
+    }
+    if(count($nFez) == 0){
+        $div = $div."<div id='aluno'>";
+        $div = $div."<p id='nomeAlunoN'>Todos os alunos
+        </p> <p id='nomeAlunoN'>Fizeram as atividades</p>";
+        $div = $div."</div>";
     }
 
     $div = $div."</div>";

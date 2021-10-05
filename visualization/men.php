@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="/TCC/CSS/menu/menu.css">
     </head>
     <body>
-        <header id='header'>
+    <header id='header'>
             <a href="/TCC/visualization/home.php" id='logo'>PROFIE</a>
             <nav id='nav'>
                 <input type='button' id='btn-mobile' value='☰'>
@@ -25,12 +25,9 @@
                         if ($_SESSION["tipo"] == "D"){
                             echo '<li><a class="nav-link" href="/TCC/visualization/front_list.php">Professores</a></li>
                             <li><a class="nav-link" href="/TCC/visualization/teacherRegister.php">Cadastro de professores</a></li>
-                            <li><a class="nav-link" href="/TCC/visualization/turmas/create">Cadastro de Turmas</a></li>
-                            ';
-                            
+                            <li><a class="nav-link" href="/TCC/visualization/turmas/create">Cadastro de Turmas</a></li>';
                         }
                     ?>
-                                                <li><a class="nav-link" href="/TCC/visualization/planoMensal/createPlano/createPlano.php">Criar plano</a></li>
                     <li><a class="nav-link" href="/TCC/visualization/planoMensal/list/planoLista.php">Plano mensal</a></li>
                     <li><a class="nav-link" href="/TCC/visualization/turmas/lista/front_list.php">Turmas</a></li>
                     <li><a class="nav-link" href="/TCC/settings/connections/exit.php">Sair</a>  </li>
